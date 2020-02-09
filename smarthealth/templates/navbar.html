@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href = "https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"rel = "stylesheet">
+
+    <!--<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    --><script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!--script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    -->
+    {% block title %}
+    {% endblock %}
+    <style type="text/css">
+        .loader{
+        background: white;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 99;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .loader > div{
+        width: 60%;
+      }
+      .loader.hidden{
+        animation: fadeOut 1s;
+        animation-fill-mode: forwards;
+      }
+      @keyframes fadeOut{
+        100% {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    </style>
+
+</head>
+<body>
+    <div class="loader" id="loader"></div>
+
+  <nav class="" style="background-color:#008080;">
+    <div class="nav-wrapper" style="margin-right: 20px; margin-left: 30px;">
+        <a href="#" class="brand-logo hide-on-med-and-down">SHPABS</a>
+        <ul class="right ">
+          {% if user.is_authenticated %}
+            {% if user.groups.all.0.name == 'patient' %}
+                <li><a href="{% url 'searchDisease' %}">Search Disease</a></li>
+                <li><a href="{% url 'bookAppointment' %}">Book Appointment</a></li>
+                <li style="width:100px;"></li>
+                <li><a style="font-weight:600; font-style: italic;" href="{% url 'patientProfile' %}">{{ request.user }}</a></li>
+            {% elif user.groups.all.0.name == 'doctor' %}
+                <li><a href="{% url 'showAppointment' %}">Show Appointment</a></li>
+                <li style="width:100px;"></li>
+                <li><a style="font-weight:600; font-style: italic;" href="{% url 'doctorProfile' %}">{{ request.user }}</a></li>
+            {% else %}
+                <li><a href="{% url 'searchDisease' %}">Search Disease</a></li>
+                <li><a href="{% url 'bookAppointment' %}">Book Appointment</a></li>
+                <li><a href="{% url 'showAppointment' %}">Show Appointment</a></li>
+                <li style="width:100px;"></li>
+                <li><a style="font-weight:600; font-style: italic;">{{ request.user }}</a></li>
+            {% endif %}
+
+            <li><a style="font-style: italic;" href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+
+          {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  {% block body %}
+
+  {% endblock %}
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script-->
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'navbar.html' %}
+
+    {% block title %}
+    <title>Show Appointment</title>
+    {% load static %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h4>Appointments </h4>
+        <form>
+            <table border="2px solid black">
+                <thead>S.No.</thead>
+                <thead>Patient's Name</thead>
+                <thead>Booked Date</thead>
+                <thead>Booked Time</thead>
+                <thead>Remarks</thead>
+            </table>
+        </form>
+    </div>
+    {% load static %}
+            <script src="{% static 'js/loader.js' %}"></script>
+{% endblock %}

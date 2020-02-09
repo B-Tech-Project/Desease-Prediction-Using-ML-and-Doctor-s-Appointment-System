@@ -1,0 +1,10 @@
+{% extends 'navbar.html' %}
+
+    {% block title %}
+    <title>Profile | Patient | {{request.user}}</title>
+    {% endblock %}
+{% block body %}
+
+{% load static %}
+        <script src="{% static 'js/loader.js' %}"></script>
+{% endblock %}

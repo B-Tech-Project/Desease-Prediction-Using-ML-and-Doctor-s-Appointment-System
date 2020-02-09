@@ -1,0 +1,55 @@
+{% extends 'navbar.html' %}
+
+    {% block title %}
+    <title>Book Appointment</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'appointment\appointmentStyle.css' %}" type="text/css">
+    <style type="css">
+        header{
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .btnSubmit
+        {
+            border:none;
+            border-radius:1.5rem;
+            padding: 1%;
+            width: 20%;
+            cursor: pointer;
+            background: #0062cc;
+            color: #fff;
+        }
+        .clickable{
+            cursor: pointer;
+        }
+    </style>
+    {% endblock %}
+
+{% block body %}
+<div class="container ">
+    <h4>Book Appointment</h4>
+    <div class="form bookAppointmentForm">
+        <header style="font-size: 18px; font-weight: 600;">Search doctor based on: </header>
+        <div class="row" style="padding:0px; margin-top:20px;">
+            <div class="col s3">
+                <div class="form-group" style="width:60%">
+                    <label for="areaPin">Pin code:</label>
+                    <input type="number" class="pin" id="areaPin" placeholder="Pincode.." value="" style="height:30px; decoration:none;"/>
+                </div>
+            </div>
+            <div class="col s5">
+                <div class="form-group"  style="width:40%;">
+                    <label for="date">Date:</label>
+                    <input type="date" class="date" id="date" placeholder="Date.." value="" style="height:30px;"/>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btnSubmit center">Check</button>
+    </div>
+    <div class="wrapper" style="margin-top:40px;">
+        <header style="font-size: 18px; font-weight: 600;">Available Doctors:</header>
+    </div>
+</div>
+{% load static %}
+        <script src="{% static 'js/loader.js' %}"></script>
+{% endblock %}
