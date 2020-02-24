@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href = "https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"rel = "stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<br><br>
+<h3>Search Disease</h3>
+    <input id="symptom" type="search">
+    <button >Add to list</button>
+    <br><hr><br>
+    {% csrf_token %}
+    <button type="submit" id="search_submit" name="search_submit">Search Disease</button>
+    <h4>
+        <ul id="prediction_results">
+        </ul>
+    </h4>
+
+<script type="text/javascript">
+
+var symptom_list = ['spotting_ urination','continuous_sneezing', 'yellow_crust_ooze', 'dischromic _patches']
+$(function(){
+   $('#search_submit').click(function(){
+   var user_symptoms_list = JSON.stringify(symptom_list)
+        $.ajax({
+            type:'POST',
+            url:'{% url 'disease_database:submit_symptom' %}',
+            data:{
+                symptom_list:user_symptoms_list,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:showResults,
+            dataType:'html'
+        });
+    });
+});
+
+function showResults(data, TextStatus, jqXHR){
+    $('#prediction_results').html(data);
+}
+
+
+$(function() {
+    var symptom_list = [
+        {% for symptom in symptom_list %}
+        "{{ symptom }}",
+        {% endfor %}
+    ]
+    $("#symptom").autocomplete({
+        source: function(request, response){
+         var results = $.ui.autocomplete.filter(symptom_list, request.term);
+         response(results.slice(0,10));
+         }
+    });
+});
+
+</script>
+</body>
+
+</html>

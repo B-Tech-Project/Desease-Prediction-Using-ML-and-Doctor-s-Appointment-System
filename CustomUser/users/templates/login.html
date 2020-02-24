@@ -1,0 +1,20 @@
+<h1>Login</h1>
+{% if messages %}
+{% for message in messages %}
+  <div class="messages center col s10 m8" style="color: red; margin: 0px 200px 10px 3px;">
+    <span class="{{ message.tags }}"style="font-size: 20px; padding: 20px 50px;">{{ message }}</span></div>
+{% endfor %}
+{% endif %}
+<form method="post" target="">
+  {% csrf_token %}
+
+  <input type="email" placeholder="Email" name="username" required>
+  <br><br>
+  <input type="password" placeholder="Password" name="password" required>
+  <br><br>
+  <button type="submit">Login</button>
+  <br><br>
+  <header>Doctor Register <a href="{% url 'users:dsignup' %}">here</a></header>
+  <br>
+  <header>Patient Register <a href="{% url 'users:psignup' %}">here</a></header>
+</form>

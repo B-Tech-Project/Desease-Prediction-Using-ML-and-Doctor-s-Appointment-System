@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Patient update</h3>
+<h4>Email: {{ user.email }}</h4>
+<form method="post">
+  {% csrf_token %}
+{{ errors }}
+  <br>
+  Name:     {{ update_user_form.name }}
+    <br><br>
+  Address:  {{update_user_form.address}}
+    <br><br>
+  Age:      {{ update_patient_form.age }}
+  <br><br>
+  <button type="submit">SAVE</button>
+</form>
+</body>
+</html>

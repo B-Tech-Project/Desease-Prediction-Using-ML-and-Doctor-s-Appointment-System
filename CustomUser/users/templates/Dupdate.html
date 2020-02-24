@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4>Doctor update</h4>
+<form method="post">
+    {% csrf_token %}
+  {{ errors }}
+ Name:     {{ update_user_form.name }}
+    <br><br>
+  Address:  {{update_user_form.address}}
+    <br><br>
+  Specialization: {{ update_doctor_form.specialization }}
+  <br><br>
+    Open Time: {{update_doctor_form.open_time }}
+    <br><br>
+    <header>Close time: {{ update_doctor_form.close_time }}</header>
+  <button type="submit">SAVE</button>
+</form>
+</body>
+</html>

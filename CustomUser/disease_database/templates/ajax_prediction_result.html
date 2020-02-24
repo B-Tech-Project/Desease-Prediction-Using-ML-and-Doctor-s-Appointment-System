@@ -1,0 +1,14 @@
+{% if messages %}
+    <h5>Status:</h5>
+    {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+{% if predictions %}
+    <h3>Results:</h3>
+    {% for disease, accuracy in predictions.items %}
+        <h4>Disease: {{disease}}</h4><p>Accuracy: {{accuracy}}%</p><br>
+
+    {% endfor %}
+{% endif %}

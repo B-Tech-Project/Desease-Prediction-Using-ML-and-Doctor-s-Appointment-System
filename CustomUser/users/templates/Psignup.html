@@ -1,0 +1,16 @@
+<h1>Sign up Patient</h1>
+<form method="post">
+  {% csrf_token %}
+{{ errors }}
+  {% if messages %}
+{% for message in messages %}
+  <div class="messages center col s10 m8" style="color: red; margin: 0px 200px 10px 3px;">
+    <span class="{{ message.tags }}"style="font-size: 20px; padding: 20px 50px;">{{ message }}</span></div>
+{% endfor %}
+{% endif %}
+  <br>
+  {{ user_form.as_p }}
+  {{ patient_form.as_p }}
+  <br><br>
+  <button type="submit">Sign up</button>
+</form>

@@ -1,0 +1,15 @@
+<h2>Patient profile</h2>
+<h4>
+  Name: {{ user.name }}
+</h4>
+<p>
+    Email: {{ user.email }}
+</p>
+<p>Address: {{user.address}}</p>
+<br>
+<h5>Age: {{ user.patient_detail.age }}</h5>
+<a href="{% url 'users:Pupdateprofile' %}">Edit Profile</a>
+<br>
+<a href="{% url 'users:ChangePassword' %}">Change Password</a>
+<br>
+<a href="{% url 'users:logout' %}">Logout</a>

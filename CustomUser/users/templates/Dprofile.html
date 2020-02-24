@@ -1,0 +1,16 @@
+<h2>Doctor profile</h2>
+<h4>
+  Name: {{ user.name }}
+</h4>
+<br>
+<h5>Email: {{ user.email }}</h5>
+<h5>Address: {{user.address}}</h5>
+<h5>Specialization: {{ user.doctor_detail.specialization }}</h5>
+<h5>Open Time: {{ user.doctor_detail.open_time }}</h5>
+<h5>Close Time: {{ user.doctor_detail.close_time }}</h5>
+
+<a href="{% url 'users:Dupdateprofile' %}">Edit Profile</a>
+<br>
+<a href="{% url 'users:ChangePassword' %}">Change Password</a>
+<br>
+<a href="{% url 'users:logout' %}">Logout</a>
